@@ -1,3 +1,5 @@
+const mensaje = document.getElementById("tabla__msj");
+
 const boton = document.querySelector(".boton-reincio");
 
 let posiciones = ['00','01','02',
@@ -23,15 +25,15 @@ document.querySelectorAll(".casillero").forEach( casilla => {
             if(posDisponibles.length > 0 && !verificarGanador('X')){
                 setTimeout( () => {
                     botJugar();
-    
+                    if(verificarGanador('O')){
+                        terminarJuego('O');
+                    }   
                 },500);
                 
-                if(verificarGanador('O')){
-                    terminarJuego();
-                }
+ 
 
             }else{
-                terminarJuego();
+                terminarJuego('X');
             }
         }
     });
@@ -48,6 +50,8 @@ boton.addEventListener('click', () => {
         casilla.innerHTML = '';
     });
     terminoJuego= false;
+    mensaje.classList.remove("mostrar-msj");
+    mensaje.innerHTML = '';
 });
 
 
@@ -75,7 +79,7 @@ const actualizarPosiciones = (casilla,valor) =>{
 };
 
 
-const botJugar = () => {
+const botJugar = async () => {
     const pos = elegirPosAleatoria();
     const casilla = document.getElementById(posDisponibles[pos]);
     escribirCasilla(casilla,'O');
@@ -89,6 +93,7 @@ const elegirPosAleatoria = () => {
 
 
 const verificarGanador = (Jugador) => {
+    console.log("verificando ganador para: "+Jugador)
     let hayGanador = true;
     //verifica horizontal en las tres filas
     for(let i=0; i<tablero.length; i++){
@@ -132,9 +137,12 @@ const verificarGanador = (Jugador) => {
 };
 
 
-const terminarJuego = () => {
+
+const terminarJuego = (Jugador) => {
     console.log('termino el juego')
     terminoJuego = true;
+    mensaje.innerHTML =`Ganan las ${Jugador}`;
+    mensaje.classList.add('mostrar-msj');
 }
 
 
