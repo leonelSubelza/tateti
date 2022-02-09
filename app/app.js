@@ -78,7 +78,8 @@ boton.addEventListener('click', () => {
     tablero.forEach( (valor,i) => tablero[i]='');
     document.querySelectorAll(".casillero").forEach( casilla => {
         casilla.innerHTML = '';
-    })
+    });
+    terminoJuego= false;
 });
 
 
