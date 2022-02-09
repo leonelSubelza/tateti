@@ -1,12 +1,14 @@
-const posiciones = ['00','01','02',
+const boton = document.querySelector(".boton-reincio");
+
+let posiciones = ['00','01','02',
                     '10','11','12',
                     '20','21','22'];
 
-const tablero = ['','','',
+let tablero = ['','','',
                  '','','',
                  '','',''];
 
-const posDisponibles = ['00','01','02',
+let posDisponibles = ['00','01','02',
                         '10','11','12',
                         '20','21','22'];
 
@@ -15,8 +17,8 @@ document.querySelectorAll(".casillero").forEach( casilla => {
     casilla.addEventListener('click', (e) => {
         
         //en el caso de que se modifique el html a la fuerza y se escriba algo
-        if(casilla.innerHTML == '' && casilla.innerHTML != 'o' && casilla.innerHTML != 'x'){
-            escribirCasilla(casilla,'x');
+        if(casilla.innerHTML == '' && casilla.innerHTML != 'O' && casilla.innerHTML != 'X'){
+            escribirCasilla(casilla,'X');
             setTimeout( () => {
                 botJugar();
             },500);
@@ -53,3 +55,13 @@ const botJugar = () => {
 const elegirPosAleatoria = () => {
     return numeroRandom = Math.floor((Math.random() * (posDisponibles.length - 1)));
 }
+
+boton.addEventListener('click', () => {
+    posDisponibles = ['00','01','02',
+                      '10','11','12',
+                      '20','21','22'];
+    tablero.forEach( (valor,i) => tablero[i]='');
+    document.querySelectorAll(".casillero").forEach( casilla => {
+        casilla.innerHTML = '';
+    })
+});
