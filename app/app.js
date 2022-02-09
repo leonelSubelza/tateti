@@ -37,6 +37,20 @@ document.querySelectorAll(".casillero").forEach( casilla => {
     });
 });
 
+boton.addEventListener('click', () => {
+    posDisponibles = ['00','01','02',
+                      '10','11','12',
+                      '20','21','22'];
+    tablero = [ ['','',''],
+                ['','',''],
+                ['','',''] ];
+    document.querySelectorAll(".casillero").forEach( casilla => {
+        casilla.innerHTML = '';
+    });
+    terminoJuego= false;
+});
+
+
 const escribirCasilla = (casilla,valor) => {
     casilla.innerHTML = valor;
     actualizarPosiciones(casilla,valor);
@@ -71,16 +85,6 @@ const elegirPosAleatoria = () => {
     return numeroRandom = Math.floor((Math.random() * (posDisponibles.length - 1)));
 }
 
-boton.addEventListener('click', () => {
-    posDisponibles = ['00','01','02',
-                      '10','11','12',
-                      '20','21','22'];
-    tablero.forEach( (valor,i) => tablero[i]='');
-    document.querySelectorAll(".casillero").forEach( casilla => {
-        casilla.innerHTML = '';
-    });
-    terminoJuego= false;
-});
 
 
 
