@@ -27,3 +27,35 @@ th, td{
     height: 50px;
     width: 50px;
 }
+
+td[id='00']{
+    border-top: none;
+    border-left: none
+}
+td[id='01']{
+    border-top: none;
+}
+td[id='02']{
+    border-top: none;
+    border-right: none;
+}
+
+td[id='10']{
+    border-left: none
+}
+td[id='12']{
+    border-right: none;
+}
+
+
+td[id='20']{
+    border-left: none;
+    border-bottom: none;
+}
+td[id='21']{
+    border-bottom: none;
+}
+td[id='22']{
+    border-right: none;
+    border-bottom: none;
+}
