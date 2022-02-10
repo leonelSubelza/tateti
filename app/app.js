@@ -150,7 +150,6 @@ const verificarGanador = (Jugador) => {
 
 
 const terminarJuego = (Jugador) => {
-    console.log('termino el juego');
     terminoJuego = true;
 
     if(Jugador == '-'){
