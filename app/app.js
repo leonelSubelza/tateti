@@ -15,25 +15,36 @@ let posDisponibles = ['00','01','02',
                       '20','21','22'];
 
 let terminoJuego = false;
+let turnoRival = false;
 
 document.querySelectorAll(".casillero").forEach( casilla => {
     casilla.addEventListener('click', (e) => {
         
         //en el caso de que se modifique el html a la fuerza y se escriba algo
-        if(casilla.innerHTML == '' && casilla.innerHTML != 'O' && casilla.innerHTML != 'X' && !terminoJuego){
+        if(casilla.innerHTML == '' && casilla.innerHTML != 'O' && casilla.innerHTML != 'X' && !terminoJuego && !turnoRival){
             escribirCasilla(casilla,'X');
             if(posDisponibles.length > 0 && !verificarGanador('X')){
+                turnoRival= true;
                 setTimeout( () => {
                     botJugar();
+                    
                     if(verificarGanador('O')){
                         terminarJuego('O');
                     }   
+                    turnoRival= false;
                 },500);
                 
  
 
             }else{
-                terminarJuego('X');
+                if(verificarGanador('x')){
+                    terminarJuego('X');
+                    return;
+                }
+                if(posDisponibles.length < 1){
+                    terminarJuego('-');
+                }
+                
             }
         }
     });
@@ -139,10 +150,17 @@ const verificarGanador = (Jugador) => {
 
 
 const terminarJuego = (Jugador) => {
-    console.log('termino el juego')
+    console.log('termino el juego');
     terminoJuego = true;
-    mensaje.innerHTML =`Ganan las ${Jugador}`;
+
+    if(Jugador == '-'){
+        mensaje.innerHTML =`Empate`;
+    }else{
+        mensaje.innerHTML =`Ganan las ${Jugador}`;
+        
+    }
     mensaje.classList.add('mostrar-msj');
+    
 }
 
 
