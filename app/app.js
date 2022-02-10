@@ -37,7 +37,7 @@ document.querySelectorAll(".casillero").forEach( casilla => {
  
 
             }else{
-                if(verificarGanador('x')){
+                if(verificarGanador('X')){
                     terminarJuego('X');
                     return;
                 }
@@ -104,7 +104,6 @@ const elegirPosAleatoria = () => {
 
 
 const verificarGanador = (Jugador) => {
-    console.log("verificando ganador para: "+Jugador)
     let hayGanador = true;
     //verifica horizontal en las tres filas
     for(let i=0; i<tablero.length; i++){
@@ -140,7 +139,8 @@ const verificarGanador = (Jugador) => {
     }
 
     //verifica diagonal der
-    if(tablero[2][0]==Jugador && tablero[1][1]==Jugador && tablero[0][2]==Jugador){
+    hayGanador=true;
+    if( (tablero[2][0]==Jugador) && (tablero[1][1]==Jugador) && (tablero[0][2]==Jugador) ){
         return true;
     }
 
